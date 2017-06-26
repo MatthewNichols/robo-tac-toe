@@ -1,0 +1,16 @@
+$BorderValue: solid 5px #000;
+
+:host {
+  box-sizing: border-box;
+
+  &.center-row {
+    border-top: $BorderValue;
+    border-bottom: $BorderValue;
+  }
+
+  &.center-column {
+    border-left: $BorderValue;
+    border-right: $BorderValue;
+  }
+
+}
