@@ -2,6 +2,9 @@ $BorderValue: solid 5px #000;
 
 :host {
   box-sizing: border-box;
+  display: inline-flex;
+  height: 200px;
+  width: 200px;
 
   &.center-row {
     border-top: $BorderValue;
