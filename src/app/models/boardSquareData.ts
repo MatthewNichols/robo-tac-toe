@@ -21,6 +21,14 @@ export class boardSquareModel {
     return "";
   }
 
+  get claimedById(): number {
+    if (this.claimedBy) {
+      return this.claimedBy.playerId;
+    }
+
+    return 0;
+  }
+
   handleClaim() {
     console.log("claim");
     this.claimedBy = this.controller.activePlayer;

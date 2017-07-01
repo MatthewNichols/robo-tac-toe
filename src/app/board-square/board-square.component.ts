@@ -21,8 +21,6 @@ export class BoardSquareComponent implements OnInit{
   }
 
   onClick() {
-    console.log("Click", this.squareModel);
-
     this.squareModel.handleClaim();
   }
 
