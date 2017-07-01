@@ -1,4 +1,4 @@
 
 <div *ngFor="let row of rows">
-  <app-board-square *ngFor="let square of row" [row]=square.row  [col]=square.col ></app-board-square>
+  <app-board-square *ngFor="let square of row" [squareModel]=square></app-board-square>
 </div>

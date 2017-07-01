@@ -1,4 +1,12 @@
 <span>
-{{row}}, {{col}}
+{{squareModel.row}}, {{squareModel.col}}
 </span>
+
+<a *ngIf="!squareModel.isClaimed; else isNotClaimed" class="main-click-area" href="#" (click)="onClick()" >
+</a>
+<ng-template #isNotClaimed>
+  <div class="main-click-area claimed">
+    {{squareModel.claimedText}}
+  </div>
+</ng-template>
 

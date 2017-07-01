@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {gameController} from "./models/gameController";
+import {PLAYER_1, PLAYER_2} from "./models/constants";
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,14 @@ import {gameController} from "./models/gameController";
 export class AppComponent {
 
   constructor() {
-    //this.player1Active = true;
+
   }
 
   title = 'app';
 
   controller = new gameController();
 
-  get player1Active() { return this.controller.activePlayer === 1};
-  get player2Active() { return this.controller.activePlayer === 2};
+  get player1Active() { return this.controller.activePlayerId === PLAYER_1};
+  get player2Active() { return this.controller.activePlayerId === PLAYER_2};
 
 }

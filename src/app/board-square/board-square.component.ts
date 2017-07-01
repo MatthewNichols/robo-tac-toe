@@ -1,4 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {boardSquareModel} from "../models/boardSquareData";
 
 @Component({
   selector: 'app-board-square',
@@ -9,17 +10,20 @@ export class BoardSquareComponent implements OnInit{
 
   constructor() { }
 
-  @Input() row: number;
-  @Input() col: number;
+  @Input() squareModel: boardSquareModel;
 
   @HostBinding('class.center-column') centerColumn: boolean;
   @HostBinding('class.center-row') centerRow: boolean;
 
   ngOnInit(): void {
-    console.log(this.col);
-    this.centerColumn = this.col == 2;
-    this.centerRow = this.row == 2;
+    this.centerColumn = this.squareModel.col == 2;
+    this.centerRow = this.squareModel.row == 2;
   }
 
+  onClick() {
+    console.log("Click", this.squareModel);
+
+    this.squareModel.handleClaim();
+  }
 
 }

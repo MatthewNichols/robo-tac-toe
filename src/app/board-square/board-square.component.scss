@@ -5,6 +5,7 @@ $BorderValue: solid 5px #000;
   display: inline-flex;
   height: 200px;
   width: 200px;
+  position: relative;
 
   &.center-row {
     border-top: $BorderValue;
@@ -16,4 +17,15 @@ $BorderValue: solid 5px #000;
     border-right: $BorderValue;
   }
 
+  .main-click-area {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    &.claimed {
+      font-size: 120px;
+      padding-top: 30px;
+    }
+  }
 }

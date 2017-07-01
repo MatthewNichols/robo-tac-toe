@@ -1,17 +1,18 @@
-import {boardSquareData} from "./boardSquareData";
+import {boardSquareModel} from "./boardSquareData";
+import {gameController} from "./gameController";
 
 export class boardModel {
 
-  constructor() {
+  constructor(private controller: gameController) {
     this.squares = [];
     for (var r = 1; r <= 3; r++) {
       for (var c = 1; c <= 3 ; c++) {
-        this.squares.push(new boardSquareData(r, c));
+        this.squares.push(new boardSquareModel(r, c, this, controller));
       }
     }
   }
 
-  squares: boardSquareData[];
+  squares: boardSquareModel[];
 
   get rows() {
     return [
