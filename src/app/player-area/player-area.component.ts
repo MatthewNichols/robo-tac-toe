@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-player-area',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class PlayerAreaComponent implements OnInit {
 
   constructor() { }
+
+  @Input() playerLetter: string;
+  @Input() @HostBinding('class.active') active: boolean;
 
   ngOnInit() {
   }

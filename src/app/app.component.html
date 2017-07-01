@@ -4,9 +4,9 @@
     Welcome to {{title}}!!
   </h1>
   <div id="playing-area">
-    <app-player-area></app-player-area>
+    <app-player-area playerLetter="X" [active]="player1Active"></app-player-area>
     <app-board></app-board>
-    <app-player-area></app-player-area>
+    <app-player-area playerLetter="O" [active]="player2Active"></app-player-area>
   </div>
 
 </div>
