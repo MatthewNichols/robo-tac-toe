@@ -1,17 +1,4 @@
-<div class="row">
-  <app-board-square row="1" col="1"></app-board-square>
-  <app-board-square row="1" col="2"></app-board-square>
-  <app-board-square row="1" col="3"></app-board-square>
-</div>
 
-<div class="row">
-  <app-board-square row="2" col="1"></app-board-square>
-  <app-board-square row="2" col="2"></app-board-square>
-  <app-board-square row="2" col="3"></app-board-square>
-</div>
-
-<div class="row">
-  <app-board-square row="3" col="1"></app-board-square>
-  <app-board-square row="3" col="2"></app-board-square>
-  <app-board-square row="3" col="3"></app-board-square>
+<div *ngFor="let row of rows">
+  <app-board-square *ngFor="let square of row" [row]=square.row  [col]=square.col ></app-board-square>
 </div>

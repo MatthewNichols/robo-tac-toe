@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {boardModel} from "../models/boardModel";
 
 @Component({
   selector: 'app-board',
@@ -8,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class BoardComponent implements OnInit {
 
   constructor() { }
+
+  boardModel = new boardModel();
+
+  rows = this.boardModel.rows;
 
   ngOnInit() {
   }
