@@ -1,6 +1,7 @@
 import {boardSquareModel} from "./boardSquareData";
 import {gameController} from "./gameController";
 import {victoryPathModel} from "./victoryPathModel";
+import {playerModel} from "./playerModel";
 
 export class boardModel {
 
@@ -45,6 +46,14 @@ export class boardModel {
 
   get gameWon(): boolean {
     return this.victoryPaths.some(vp => vp.isComplete);
+  }
+
+  get gameWonBy(): playerModel {
+    if (this.gameWon) {
+      return this.winningPath.contigousSquares[0].claimedBy;
+    }
+
+    return null;
   }
 
   get winningPath(): victoryPathModel {

@@ -9,10 +9,8 @@
     <app-player-area playerLetter="O" [active]="player2Active"></app-player-area>
   </div>
 
-  <div>
-    <div *ngIf="controller.boardModel.gameWon">
-      Won
-    </div>
+  <div id="winner-announcement" *ngIf="controller.boardModel.gameWon">
+    Won by {{controller.boardModel.gameWonBy.playerLetter}}
   </div>
 
 </div>

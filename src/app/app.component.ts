@@ -13,7 +13,7 @@ export class AppComponent {
 
   }
 
-  title = 'app';
+  title = 'Robo-Tac-Toe';
 
   controller = new gameController();
 

@@ -1,5 +1,11 @@
 :host {
   min-width: 200px;
+  flex-grow: 1;
+  border: 2px solid black;
+
+  h2 {
+    font-size: 64px;
+  }
 
   &.active {
     background-color: aqua;
