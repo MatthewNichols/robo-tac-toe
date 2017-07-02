@@ -4,10 +4,10 @@ import {gameController} from "./gameController";
 
 export class boardSquareModel {
 
-
   constructor(public row: number, public col: number, private parent: boardModel, private controller: gameController) {  }
 
   claimedBy: playerModel;
+  partOfWinningPath: boolean;
 
   get isClaimed(): boolean {
     return !!this.claimedBy;
@@ -29,9 +29,11 @@ export class boardSquareModel {
     return 0;
   }
 
+  get claimsAllowed() {
+    return !this.parent.gameWon && !this.isClaimed;
+  }
+
   handleClaim() {
-    console.log("claim");
-    this.claimedBy = this.controller.activePlayer;
-    this.controller.toggleActivePlayer();
+    this.controller.handleSquareClaim(this);
   }
 }

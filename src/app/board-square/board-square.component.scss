@@ -17,6 +17,10 @@ $BorderValue: solid 5px #000;
     border-right: $BorderValue;
   }
 
+  &.winning-path {
+    background-color: burlywood;
+  }
+
   .main-click-area {
     display: inline-block;
     width: 100%;

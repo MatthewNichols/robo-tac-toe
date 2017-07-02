@@ -14,10 +14,15 @@ export class BoardSquareComponent implements OnInit{
 
   @HostBinding('class.center-column') centerColumn: boolean;
   @HostBinding('class.center-row') centerRow: boolean;
+  @HostBinding('class.winning-path') get winningPath(): boolean { return this.squareModel.partOfWinningPath; }
 
   ngOnInit(): void {
     this.centerColumn = this.squareModel.col == 2;
     this.centerRow = this.squareModel.row == 2;
+  }
+
+  get clickEnabled() {
+    return this.squareModel.claimsAllowed;
   }
 
   onClick() {

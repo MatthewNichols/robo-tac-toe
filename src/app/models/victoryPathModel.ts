@@ -23,5 +23,9 @@ export class victoryPathModel {
     return false;
   }
 
+  markSquaresWinning() {
+    this.contigousSquares.forEach(s => s.partOfWinningPath = true);
+  }
+
   wonByPlayer: playerModel;
 }

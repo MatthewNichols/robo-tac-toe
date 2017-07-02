@@ -1,6 +1,7 @@
 import {playerModel} from "./playerModel";
 import {PLAYER_1, PLAYER_2} from "./constants";
 import {boardModel} from "./boardModel";
+import {boardSquareModel} from "./boardSquareData";
 
 export class gameController {
 
@@ -51,5 +52,14 @@ export class gameController {
 
   toggleActivePlayer() {
       this.activePlayer = this.activePlayerId == PLAYER_1 ? this.player2 : this.player1;
+  }
+
+  handleSquareClaim(square: boardSquareModel) {
+    square.claimedBy = this.activePlayer;
+    this.toggleActivePlayer();
+
+    if (this.boardModel.gameWon) {
+      this.boardModel.winningPath.markSquaresWinning();
+    }
   }
 }

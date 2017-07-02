@@ -43,8 +43,12 @@ export class boardModel {
   squares: boardSquareModel[];
   victoryPaths: victoryPathModel[];
 
-  get gameWon() {
+  get gameWon(): boolean {
     return this.victoryPaths.some(vp => vp.isComplete);
+  }
+
+  get winningPath(): victoryPathModel {
+    return this.victoryPaths.find(vp => vp.isComplete);
   }
 
   get rows() {
