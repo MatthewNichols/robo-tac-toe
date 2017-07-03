@@ -55,11 +55,17 @@ export class gameController {
   }
 
   handleSquareClaim(square: boardSquareModel) {
+    const playerLetter = this.activePlayer.playerLetter;
+
     square.claimedBy = this.activePlayer;
-    this.toggleActivePlayer();
+    console.log(`${playerLetter} claimed square ${square.row}, ${square.col}`);
 
     if (this.boardModel.gameWon) {
       this.boardModel.winningPath.markSquaresWinning();
+
+      console.log(`${playerLetter} won the game!!`);
+    } else {
+      this.toggleActivePlayer();
     }
   }
 }
