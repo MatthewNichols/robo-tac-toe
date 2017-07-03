@@ -10,4 +10,21 @@
   &.active {
     background-color: aqua;
   }
+
+  div.player-mode {
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+    ul.player-mode-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding-top: 5px;
+      }
+
+    }
+  }
 }
