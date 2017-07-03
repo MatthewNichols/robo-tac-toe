@@ -1,5 +1,5 @@
 
-  <h2>{{playerLetter}}</h2>
+  <h2>{{playerModel.playerLetter}}</h2>
 
   <div class="player-mode">
     <h3>Player Mode</h3>
@@ -7,19 +7,19 @@
       <ul class="player-mode-list">
         <li>
           <label>
-            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.manual" [(ngModel)]="playerMode" >
+            <input type="radio" name="player-{{playerModel.playerLetter}}-mode" [value]="playerModes.manual" [(ngModel)]="playerModel.playerMode" >
             Manual
           </label>
         </li>
         <li>
           <label>
-            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.random" [(ngModel)]="playerMode" >
+            <input type="radio" name="player-{{playerModel.playerLetter}}-mode" [value]="playerModes.random" [(ngModel)]="playerModel.playerMode" >
             Random
           </label>
         </li>
         <li>
           <label>
-            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.runMyCode" [(ngModel)]="playerMode" >
+            <input type="radio" name="player-{{playerModel.playerLetter}}-mode" [value]="playerModes.runMyCode" [(ngModel)]="playerModel.playerMode" >
             Run my Code
           </label>
         </li>

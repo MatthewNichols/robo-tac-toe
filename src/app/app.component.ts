@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import {gameController} from "./models/gameController";
+import { gameController } from "./models/gameController";
+import { scriptingAPI } from './models/scriptingAPI';
 import {PLAYER_1, PLAYER_2} from "./models/constants";
+import {playerModes} from './player-area/player-area.component';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,10 @@ import {PLAYER_1, PLAYER_2} from "./models/constants";
 })
 export class AppComponent {
 
-  constructor() {
+  //Expose the playerModes enum for the template
+  playerModes = playerModes;
 
-  }
+  constructor() { }
 
   title = 'Robo-Tac-Toe';
 

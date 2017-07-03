@@ -2,22 +2,28 @@ import {playerModel} from "./playerModel";
 import {PLAYER_1, PLAYER_2} from "./constants";
 import {boardModel} from "./boardModel";
 import {boardSquareModel} from "./boardSquareData";
+import {playerModes} from "../player-area/player-area.component";
+import {scriptingAPI} from "./scriptingAPI";
 
 export class gameController {
 
   constructor() {
     this.player1 = new playerModel(PLAYER_1, "X");
-    this.player2 = new playerModel(PLAYER_2, "O");
+    this.player2 = new playerModel(PLAYER_2, "O", playerModes.random);
 
     this.activePlayer = this.player1;
 
     this.boardModel = new boardModel(this);
+    this.scriptingAPI = new scriptingAPI(this);
+    //Expose the scripting API to the console
+    window["scriptingAPI"] = this.scriptingAPI;
   }
 
   player1: playerModel;
   player2: playerModel;
   activePlayerId: number;
   boardModel: boardModel;
+  scriptingAPI: scriptingAPI;
 
   get activePlayer(): playerModel {
     if(this.activePlayerId == PLAYER_1) {
@@ -66,6 +72,7 @@ export class gameController {
       console.log(`${playerLetter} won the game!!`);
     } else {
       this.toggleActivePlayer();
+      this.activePlayer.executeTurn(this.scriptingAPI);
     }
   }
 }

@@ -1,4 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {playerModel} from "../models/playerModel";
 
 @Component({
   selector: 'app-player-area',
@@ -10,16 +11,13 @@ export class PlayerAreaComponent implements OnInit {
   //Expose the playerModes enum for the template
   playerModes = playerModes;
 
-  constructor() {
-    this.playerMode = playerModes.manual;
-  }
+  constructor() { }
 
-  @Input() playerLetter: string;
   @Input() @HostBinding('class.active') active: boolean;
-  playerMode: playerModes;
+  @Input() playerModel: playerModel;
 
   get editorEnabled(): boolean {
-    return this.playerMode === playerModes.runMyCode;
+    return this.playerModel.playerMode === playerModes.runMyCode;
   }
 
   ngOnInit() {
