@@ -7,12 +7,28 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 })
 export class PlayerAreaComponent implements OnInit {
 
-  constructor() { }
+  //Expose the playerModes enum for the template
+  playerModes = playerModes;
+
+  constructor() {
+    this.playerMode = playerModes.manual;
+  }
 
   @Input() playerLetter: string;
   @Input() @HostBinding('class.active') active: boolean;
+  playerMode: playerModes;
+
+  get editorEnabled(): boolean {
+    return this.playerMode === playerModes.runMyCode;
+  }
 
   ngOnInit() {
   }
 
+}
+
+export enum playerModes {
+  manual,
+  random,
+  runMyCode
 }

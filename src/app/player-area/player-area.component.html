@@ -3,27 +3,29 @@
 
   <div class="player-mode">
     <h3>Player Mode</h3>
-    <ul class="player-mode-list">
-      <li>
-        <label>
-          <input type="radio" name="player-{{playerLetter}}-mode">
-          Manual
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="radio" name="player-{{playerLetter}}-mode">
-          Random
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="radio" name="player-{{playerLetter}}-mode">
-          Run my Code
-        </label>
-      </li>
-    </ul>
+    <form #f="ngForm" novalidate>
+      <ul class="player-mode-list">
+        <li>
+          <label>
+            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.manual" [(ngModel)]="playerMode" >
+            Manual
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.random" [(ngModel)]="playerMode" >
+            Random
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="player-{{playerLetter}}-mode" [value]="playerModes.runMyCode" [(ngModel)]="playerMode" >
+            Run my Code
+          </label>
+        </li>
+      </ul>
+    </form>
   </div>
 
-  <app-code-editor></app-code-editor>
+  <app-code-editor [enabled]="editorEnabled"></app-code-editor>
 
