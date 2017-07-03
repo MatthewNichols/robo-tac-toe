@@ -4,7 +4,9 @@
     Welcome to {{title}}!!
   </h1>
   <div id="playing-area">
+    <app-player-area [active]="player1Active" [playerModel]="controller.player1" ></app-player-area>
     <app-board [boardModel]="controller.boardModel" ></app-board>
+    <app-player-area [active]="player2Active" [playerModel]="controller.player2" ></app-player-area>
   </div>
 
   <div id="winner-announcement" *ngIf="controller.boardModel.gameWon">
