@@ -9,6 +9,7 @@ import { BoardComponent } from './board/board.component';
 import { PlayerAreaComponent } from './player-area/player-area.component';
 import { BoardSquareComponent } from './board-square/board-square.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
+import { CodeManagementService } from './services/code-management.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    CodeManagementService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
