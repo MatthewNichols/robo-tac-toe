@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input } from '@angular/core';
 import {playerModel} from "../models/playerModel";
 
 @Component({
@@ -6,7 +6,7 @@ import {playerModel} from "../models/playerModel";
   templateUrl: './player-area.component.html',
   styleUrls: ['./player-area.component.scss']
 })
-export class PlayerAreaComponent implements OnInit {
+export class PlayerAreaComponent {
 
   //Expose the playerModes enum for the template
   playerModes = playerModes;
@@ -19,10 +19,6 @@ export class PlayerAreaComponent implements OnInit {
   get editorEnabled(): boolean {
     return this.playerModel.playerMode === playerModes.runMyCode;
   }
-
-  ngOnInit() {
-  }
-
 }
 
 export enum playerModes {

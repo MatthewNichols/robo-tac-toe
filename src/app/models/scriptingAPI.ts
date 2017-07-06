@@ -1,10 +1,12 @@
 import {gameController} from "./gameController";
-import {boardSquareModel} from "./boardSquareData";
 
+/**
+ * The API that the user code is given to carry out its turns. Can also be accessed
+ * from the DevTools console.
+ */
 export class scriptingAPI {
 
   constructor(private gameController: gameController) { }
-
 
   /**
    * Returns all squares on board.

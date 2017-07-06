@@ -10,6 +10,7 @@ import { PlayerAreaComponent } from './player-area/player-area.component';
 import { BoardSquareComponent } from './board-square/board-square.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { CodeManagementService } from './services/code-management.service';
+import { SettingsService } from './services/settings.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CodeManagementService } from './services/code-management.service';
     FormsModule
   ],
   providers: [
-    CodeManagementService
+    CodeManagementService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })

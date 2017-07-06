@@ -4,12 +4,16 @@ import {boardModel} from "./boardModel";
 import {boardSquareModel} from "./boardSquareData";
 import {playerModes} from "../player-area/player-area.component";
 import {scriptingAPI} from "./scriptingAPI";
+import {SettingsService} from "../services/settings.service";
 
 export class gameController {
 
-  constructor() {
-    this.player1 = new playerModel(PLAYER_1, "X");
-    this.player2 = new playerModel(PLAYER_2, "O", playerModes.random);
+  constructor(private settingsService: SettingsService) {
+
+    var player1Settings = settingsService.getPlayer1Settings();
+    var player2Settings = settingsService.getPlayer2Settings();
+    this.player1 = new playerModel(PLAYER_1, "X", player1Settings.playerMode, this.playerUpdated);
+    this.player2 = new playerModel(PLAYER_2, "O", player2Settings.playerMode, this.playerUpdated);
 
     this.activePlayer = this.player1;
 
@@ -24,6 +28,14 @@ export class gameController {
   activePlayerId: number;
   boardModel: boardModel;
   scriptingAPI: scriptingAPI;
+
+  /**
+   * Handler for updates reported by the playerModel.
+   * @param playerModel
+   */
+  playerUpdated = (playerModel) => {
+    this.settingsService.savePlayerSettings(playerModel);
+  }
 
   get activePlayer(): playerModel {
     if(this.activePlayerId == PLAYER_1) {
