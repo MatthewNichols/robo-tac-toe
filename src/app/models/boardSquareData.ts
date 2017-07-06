@@ -36,4 +36,9 @@ export class boardSquareModel {
   handleClaim() {
     this.controller.handleSquareClaim(this);
   }
+
+  resetSquare() {
+    this.partOfWinningPath = false;
+    this.claimedBy = null;
+  }
 }

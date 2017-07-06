@@ -13,4 +13,10 @@
     Won by {{controller.boardModel.gameWonBy.playerLetter}}
   </div>
 
+  <div id="reset" *ngIf="controller.boardModel.gameOver">
+    <a href="#" (click)="controller.resetGame()">
+      Reset
+    </a>
+  </div>
+
 </div>

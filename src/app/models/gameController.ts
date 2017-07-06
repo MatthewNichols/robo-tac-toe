@@ -94,4 +94,10 @@ export class gameController {
       this.activePlayer.executeTurn(this.scriptingAPI);
     }
   }
+
+  resetGame() {
+    this.setActivePlayer(PLAYER_1);
+    this.boardModel.squares.forEach(s => s.resetSquare());
+    this.gameStart();
+  }
 }

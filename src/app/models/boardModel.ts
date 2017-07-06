@@ -48,6 +48,14 @@ export class boardModel {
     return this.victoryPaths.some(vp => vp.isComplete);
   }
 
+  /**
+   * Determines if the game is over. This will also cover Ties once they are detectable.
+   * @returns {boolean}
+   */
+  get gameOver(): boolean {
+    return this.victoryPaths.some(vp => vp.isComplete);
+  }
+
   get gameWonBy(): playerModel {
     if (this.gameWon) {
       return this.winningPath.contigousSquares[0].claimedBy;
