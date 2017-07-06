@@ -44,16 +44,24 @@ export class boardModel {
   squares: boardSquareModel[];
   victoryPaths: victoryPathModel[];
 
+  get unclaimedSquares(): boardSquareModel[] {
+    return this.squares.filter(s => !s.isClaimed);
+  }
+
+  get claimedSquares(): boardSquareModel[] {
+    return this.squares.filter(s => s.isClaimed);
+  }
+
   get gameWon(): boolean {
     return this.victoryPaths.some(vp => vp.isComplete);
   }
 
-  /**
-   * Determines if the game is over. This will also cover Ties once they are detectable.
-   * @returns {boolean}
-   */
   get gameOver(): boolean {
-    return this.victoryPaths.some(vp => vp.isComplete);
+    return this.gameWon || this.gameTied;
+  }
+
+  get gameTied(): boolean {
+    return this.unclaimedSquares.length === 0 && !this.gameWon;
   }
 
   get gameWonBy(): playerModel {

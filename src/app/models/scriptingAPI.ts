@@ -24,9 +24,7 @@ export class scriptingAPI {
    */
   getClaimedSquares() {
     return this.gameController.boardModel
-      .squares
-      .filter(s => s.isClaimed)
-      .map(s => new squareInfo(s));
+      .claimedSquares.map(s => new squareInfo(s));
   }
 
   /**
@@ -35,9 +33,7 @@ export class scriptingAPI {
    */
   getUnclaimedSquares() {
     return this.gameController.boardModel
-      .squares
-      .filter(s => !s.isClaimed)
-      .map(s => new squareInfo(s));
+      .unclaimedSquares.map(s => new squareInfo(s));
   }
 
   /**
