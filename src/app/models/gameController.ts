@@ -37,6 +37,14 @@ export class gameController {
     this.settingsService.savePlayerSettings(playerModel);
   }
 
+  /**
+   * Kicks off the game. Without this step the first move would have to
+   * be made manually by the user irrespective of Mode.
+   */
+  gameStart() {
+    this.activePlayer.executeTurn(this.scriptingAPI);
+  }
+
   get activePlayer(): playerModel {
     if(this.activePlayerId == PLAYER_1) {
       return this.player1;
@@ -80,7 +88,6 @@ export class gameController {
 
     if (this.boardModel.gameWon) {
       this.boardModel.winningPath.markSquaresWinning();
-
       console.log(`${playerLetter} won the game!!`);
     } else {
       this.toggleActivePlayer();

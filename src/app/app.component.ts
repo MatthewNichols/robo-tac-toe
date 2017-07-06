@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { gameController } from "./models/gameController";
 import { scriptingAPI } from './models/scriptingAPI';
 import {PLAYER_1, PLAYER_2} from "./models/constants";
@@ -10,7 +10,11 @@ import {SettingsService} from "./services/settings.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.controller.gameStart();
+  }
 
   //Expose the playerModes enum for the template
   playerModes = playerModes;
@@ -23,5 +27,4 @@ export class AppComponent {
 
   get player1Active() { return this.controller.activePlayerId === PLAYER_1};
   get player2Active() { return this.controller.activePlayerId === PLAYER_2};
-
 }
