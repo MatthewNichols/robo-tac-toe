@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import shortid from 'shortid';
+import {savedScript} from "../models/savedScript";
+import {scriptDescriptor} from "../models/scriptDescriptor";
+import localStorageUtils from './localStorageUtils';
+
+const WORKING_SCRIPT_STORAGE_KEY = "WORKING_SCRIPT_STORAGE_KEY";
+const SCRIPT_LIST_STORAGE_KEY = "SCRIPT_LIST_STORAGE_KEY";
 
 export interface ICodeManagementService {
   getSavedScriptsList(): scriptDescriptor[];
@@ -22,22 +27,23 @@ export interface ICodeManagementService {
   /**
    * Get the current working script
    */
-  getWorkingScript(): savedScript;
+  getWorkingScript(playerId: number): savedScript;
 
   /**
    * Saves the current script being worked on as is
    * @param script
    */
-  saveWorkingScript(script: savedScript);
+  saveWorkingScript(playerId: number, script: savedScript);
 }
 
 @Injectable()
 export class CodeManagementService implements ICodeManagementService {
-  getWorkingScript(): savedScript {
-    return undefined;
+  getWorkingScript(playerId: number): savedScript {
+    return localStorageUtils.getItemAs(savedScript, WORKING_SCRIPT_STORAGE_KEY + playerId, new savedScript({}));
   }
 
-  saveWorkingScript(script: savedScript) {
+  saveWorkingScript(playerId: number, script: savedScript) {
+    localStorageUtils.saveItem(WORKING_SCRIPT_STORAGE_KEY + playerId, script);
   }
 
   getSavedScriptsList(): scriptDescriptor[] {
@@ -56,46 +62,5 @@ export class CodeManagementService implements ICodeManagementService {
     throw new Error("Method not implemented.");
   }
 
-}
 
-export class savedScript {
-
-  constructor(script: { scriptId?:string, name?: string, scriptText?: string }) {
-    this.scriptId = script.scriptId || this.generateNewId();
-    this.name = script.name || "unnamed";
-    this.scriptText = script.scriptText || "";
-  }
-
-  scriptId: string;
-  isDirty: boolean;
-  name: string;
-
-  _scriptText: string;
-  get scriptText(): string {
-    return this._scriptText;
-  }
-  set scriptText(newValue: string) {
-    if (this._scriptText !== newValue) {
-      this.isDirty = true;
-      this._scriptText = newValue;
-    }
-  }
-
-  get storeageKey() {
-    return `robo-script-${this.scriptId}`;
-  }
-
-  private generateNewId(): string {
-    return shortid.generate();
-  }
-}
-
-/**
- * List entry for a saved script. All scriptDescriptors are intended to be saved in a
- * single collection "roboScriptList" together as pointers to the different saved script
- * objects.
- */
-export class scriptDescriptor {
-  storeageKey: string;
-  scriptName: string;
 }

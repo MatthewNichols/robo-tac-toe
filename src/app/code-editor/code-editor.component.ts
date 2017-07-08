@@ -1,5 +1,8 @@
 import { AceEditorComponent } from 'ng2-ace-editor';
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {CodeManagementService} from "../services/code-management.service";
+import {playerModel} from "../models/playerModel";
+import {savedScript} from "../models/savedScript";
 
 @Component({
   selector: 'app-code-editor',
@@ -8,23 +11,44 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 })
 export class CodeEditorComponent implements AfterViewInit {
 
+  constructor(private codeManementService: CodeManagementService, private cdr: ChangeDetectorRef) {  }
+
   @ViewChild('editor') editor;
-  text: string = "";
-  @Input() enabled: boolean;
+  scriptText: string = "";
+  @Input() enabled: boolean = true;
+  @Input() player: playerModel;
+  workingScript: savedScript;
+
+  textChanged() {
+    console.log("Text changed", this.scriptText);
+    if (this.workingScript) {
+      this.workingScript.scriptText = this.scriptText;
+      this.codeManementService.saveWorkingScript(this.player.playerId, this.workingScript);
+    }
+  }
 
   ngAfterViewInit() {
     //this.editor.setTheme("eclipse");
 
-    this.editor.getEditor().setOptions({
+    const editor = this.editor.getEditor();
+
+    editor.setOptions({
       enableBasicAutocompletion: true
     });
 
-    this.editor.getEditor().commands.addCommand({
+    editor.commands.addCommand({
       name: "showOtherCompletions",
       bindKey: "Ctrl-.",
       exec: function (editor) {
 
       }
-    })
+    });
+
+    this.workingScript = this.codeManementService.getWorkingScript(this.player.playerId);
+    console.log("workingScriptLoaded", this.workingScript.scriptText);
+    this.scriptText = this.workingScript.scriptText;
+    //Handles runtime error. May not be needed long term.
+    //See: https://github.com/angular/angular/issues/17572 for details
+    this.cdr.detectChanges();
   }
 }

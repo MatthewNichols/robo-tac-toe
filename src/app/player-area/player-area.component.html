@@ -27,5 +27,5 @@
     </form>
   </div>
 
-  <app-code-editor [enabled]="editorEnabled"></app-code-editor>
+  <app-code-editor *ngIf="editorEnabled" [player]="playerModel"></app-code-editor>
 
