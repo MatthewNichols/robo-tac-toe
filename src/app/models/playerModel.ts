@@ -1,6 +1,7 @@
 import {playerModes} from "../player-area/player-area.component";
 import {scriptingAPI} from "./scriptingAPI";
 import {EventEmitter, Output} from "@angular/core";
+import {savedScript} from "./savedScript";
 
 const timeToWait = 1000;
 
@@ -9,14 +10,19 @@ export class playerModel {
   /**
    * @param {Function} playerUpdated Handler function.
    */
-  constructor(public playerId: number, public playerLetter: string,
-              playerMode: playerModes = playerModes.manual, playerUpdated?: Function) {
-
+  constructor(playerId: number, playerLetter: string, playerMode: playerModes = playerModes.manual, playerUpdated?: Function) {
+    this.playerId = playerId;
+    this.playerLetter = playerLetter;
     this.playerMode = playerMode;
     this.playerUpdated = playerUpdated || function () {};
+    this.workingScript = new savedScript({});
   }
 
-  //Create a getter/setter so that changes can be detected
+  playerId: number;
+  playerLetter: string;
+
+  //#region playerMode (Create a getter/setter so that changes can be detected. Persisted to localStorage)
+
   _playerMode: playerModes;
   get playerMode(): playerModes { return this._playerMode; }
   set playerMode(newValue) {
@@ -27,6 +33,10 @@ export class playerModel {
       this.playerUpdated(this);
     }
   }
+
+  //#endregion
+
+  workingScript: savedScript;
 
   /**
    * playerUpdated Handler function.
@@ -47,8 +57,20 @@ export class playerModel {
           scriptingAPI.claimSquare(squareToClaim.row, squareToClaim.col);
         }, timeToWait);
         break;
+      case playerModes.runMyCode:
+        try {
+          console.log("Run My Code", this.workingScript.scriptText);
+          eval(this.workingScript.scriptText);
+        } catch (exp) {
+          console.log("Scripting Error", exp);
+        }
+
       default:
     }
+  }
+
+  toJSON() {
+    return { playerMode: this.playerMode }
   }
 
 }

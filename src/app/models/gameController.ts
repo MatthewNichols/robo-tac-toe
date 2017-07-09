@@ -42,7 +42,7 @@ export class gameController {
    * be made manually by the user irrespective of Mode.
    */
   gameStart() {
-    this.activePlayer.executeTurn(this.scriptingAPI);
+    setTimeout(() => this.activePlayer.executeTurn(this.scriptingAPI), 500);
   }
 
   get activePlayer(): playerModel {

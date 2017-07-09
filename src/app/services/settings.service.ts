@@ -30,7 +30,7 @@ export class SettingsService {
 
   savePlayerSettings(settings: playerSettings): void {
     var settingKey = settings.playerId === PLAYER_1 ? Player1SettingsKey : Player2SettingsKey;
-    localStorageUtils.saveItem(settingKey, { ...settings, playerMode: settings.playerMode } )
+    localStorageUtils.saveItem(settingKey, settings )
   }
 
 }

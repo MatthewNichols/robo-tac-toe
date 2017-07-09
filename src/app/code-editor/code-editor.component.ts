@@ -17,13 +17,13 @@ export class CodeEditorComponent implements AfterViewInit {
   scriptText: string = "";
   @Input() enabled: boolean = true;
   @Input() player: playerModel;
-  workingScript: savedScript;
+  //workingScript: savedScript;
 
   textChanged() {
     console.log("Text changed", this.scriptText);
-    if (this.workingScript) {
-      this.workingScript.scriptText = this.scriptText;
-      this.codeManementService.saveWorkingScript(this.player.playerId, this.workingScript);
+    if (this.player.workingScript !== undefined) {
+      this.player.workingScript.scriptText = this.scriptText;
+      this.codeManementService.saveWorkingScript(this.player.playerId, this.player.workingScript);
     }
   }
 
@@ -44,9 +44,9 @@ export class CodeEditorComponent implements AfterViewInit {
       }
     });
 
-    this.workingScript = this.codeManementService.getWorkingScript(this.player.playerId);
-    console.log("workingScriptLoaded", this.workingScript.scriptText);
-    this.scriptText = this.workingScript.scriptText;
+    this.player.workingScript = this.codeManementService.getWorkingScript(this.player.playerId);
+    console.log("workingScriptLoaded", this.player.workingScript.scriptText);
+    this.scriptText = this.player.workingScript.scriptText;
     //Handles runtime error. May not be needed long term.
     //See: https://github.com/angular/angular/issues/17572 for details
     this.cdr.detectChanges();
