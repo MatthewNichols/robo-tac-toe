@@ -1,5 +1,6 @@
 import { AceEditorComponent } from 'ng2-ace-editor';
-import {} from 'ace-builds';
+import 'brace/theme/chrome';
+import 'brace/mode/javascript';
 import {AfterViewInit, Component, Input, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {CodeManagementService} from "../services/code-management.service";
 import {playerModel} from "../models/playerModel";
@@ -29,21 +30,21 @@ export class CodeEditorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.editor.setTheme("eclipse");
+    this.editor.setTheme("chrome");
 
     const editor = this.editor.getEditor();
 
-    editor.setOptions({
-      enableBasicAutocompletion: true
-    });
+    // editor.setOptions({
+    //   enableBasicAutocompletion: true
+    // });
 
-    editor.commands.addCommand({
-      name: "showOtherCompletions",
-      bindKey: "Ctrl-.",
-      exec: function (editor) {
-
-      }
-    });
+    // editor.commands.addCommand({
+    //   name: "showOtherCompletions",
+    //   bindKey: "Ctrl-.",
+    //   exec: function (editor) {
+    //
+    //   }
+    // });
 
     this.player.workingScript = this.codeManementService.getWorkingScript(this.player.playerId);
     console.log("workingScriptLoaded", this.player.workingScript.scriptText);
