@@ -2,80 +2,81 @@ import {gameController} from "./gameController";
 
 /**
  * The API that the user code is given to carry out its turns. Can also be accessed
- * from the DevTools console.
+ * from the DevTools console. Created as a plain object to prevent the exposure of the gameController.
  */
-export class scriptingAPI {
+export function scriptingAPI(gameController: gameController) {
+  return {
 
-  constructor(private gameController: gameController) { }
+    /**
+     * Returns all squares on board.
+     * @returns {squareInfo[]}
+     */
+    getAllSquares: () => {
+      return gameController.boardModel
+        .squares
+        .map(s => new squareInfo(s));
+    },
 
-  /**
-   * Returns all squares on board.
-   * @returns {squareInfo[]}
-   */
-  getAllSquares() {
-    return this.gameController.boardModel
-      .squares
-      .map(s => new squareInfo(s));
-  }
+    /**
+     * Returns all claimed squares on board.
+     * @returns {squareInfo[]}
+     */
+      getClaimedSquares() {
+      return gameController.boardModel
+        .claimedSquares.map(s => new squareInfo(s));
+    },
 
-  /**
-   * Returns all claimed squares on board.
-   * @returns {squareInfo[]}
-   */
-  getClaimedSquares() {
-    return this.gameController.boardModel
-      .claimedSquares.map(s => new squareInfo(s));
-  }
+    /**
+     * Returns all unclaimed squares on board.
+     * @returns {squareInfo[]}
+     */
+      getUnclaimedSquares() {
+      return gameController.boardModel
+        .unclaimedSquares.map(s => new squareInfo(s));
+    },
 
-  /**
-   * Returns all unclaimed squares on board.
-   * @returns {squareInfo[]}
-   */
-  getUnclaimedSquares() {
-    return this.gameController.boardModel
-      .unclaimedSquares.map(s => new squareInfo(s));
-  }
+    /**
+     * Claims the specified square for the current player
+     * @param {number} row
+     * @param {number} col
+     */
+      claimSquare(row: number, col: number) {
+      let square = gameController.boardModel.squares
+        .find(s => s.row === row && s.col === col);
 
-  /**
-   * Claims the specified square for the current player
-   * @param {number} row
-   * @param {number} col
-   */
-  claimSquare(row: number, col: number) {
-    let square = this.gameController.boardModel.squares
-      .find(s => s.row === row && s.col === col);
+      if(square == null) {
+        throw "No such square";
+      }
 
-    if(square == null) {
-      throw "No such square";
-    }
+      if(square.isClaimed) {
+        throw "square already claimed";
+      } else {
+        gameController.handleSquareClaim(square);
+      }
+    },
 
-    if(square.isClaimed) {
-      throw "square already claimed";
-    } else {
-      this.gameController.handleSquareClaim(square);
-    }
-  }
+    /**
+     * Prints an ACSII display of the current board.
+     * Not sure it is useful for scripting
+     * but might be useful to the programmer...or not.
+     */
+      printBoardAsciiDisplay() {
 
-  /**
-   * Prints an ACSII display of the current board.
-   * Not sure it is useful for scripting
-   * but might be useful to the programmer...or not.
-   */
-  printBoardAsciiDisplay() {
-    const NEWLINE = `
+      const NEWLINE = `
 `;
 
-    var boardDisplayStr = "";
-    this.gameController.boardModel.rows.forEach(rowSquares => {
-      rowSquares.forEach(s => {
-        var squareSymbol = s.isClaimed ? `${s.claimedBy.playerLetter} ` : "_ ";
-        boardDisplayStr = boardDisplayStr + squareSymbol;
+      var boardDisplayStr = "";
+      gameController.boardModel.rows.forEach(rowSquares => {
+        rowSquares.forEach(s => {
+          var squareSymbol = s.isClaimed ? `${s.claimedBy.playerLetter} ` : "_ ";
+          boardDisplayStr = boardDisplayStr + squareSymbol;
+        });
+
+        boardDisplayStr = boardDisplayStr + NEWLINE;
       });
 
-      boardDisplayStr = boardDisplayStr + NEWLINE;
-    });
-
-    console.log(NEWLINE + boardDisplayStr);
+      console.log(NEWLINE + boardDisplayStr);
+    }
   }
 }
 

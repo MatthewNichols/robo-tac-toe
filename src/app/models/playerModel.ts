@@ -1,7 +1,6 @@
 import {playerModes} from "../player-area/player-area.component";
-import {scriptingAPI} from "./scriptingAPI";
-import {EventEmitter, Output} from "@angular/core";
 import {savedScript} from "./savedScript";
+import {userScriptExecutor} from "./userScriptExecutor";
 
 const timeToWait = 1000;
 
@@ -48,7 +47,7 @@ export class playerModel {
    * switches.
    * @param scriptingAPI
    */
-  executeTurn(scriptingAPI: scriptingAPI) {
+  executeTurn(scriptingAPI: any) {
     switch (this.playerMode) {
       case playerModes.random:
         setTimeout(() => {
@@ -60,8 +59,8 @@ export class playerModel {
       case playerModes.runMyCode:
         try {
           console.log("Run My Code", this.workingScript.scriptText);
-          eval(`${this.workingScript.scriptText}
-          //# sourceURL=player${this.playerLetter}Script.js`);
+          const scriptExecutor = new userScriptExecutor(this.workingScript.scriptText, `player${this.playerLetter}Script.js`);
+          scriptExecutor.execute(scriptingAPI);
         } catch (exp) {
           console.log("Scripting Error", exp);
         }

@@ -2,7 +2,6 @@ import {playerModel} from "./playerModel";
 import {PLAYER_1, PLAYER_2} from "./constants";
 import {boardModel} from "./boardModel";
 import {boardSquareModel} from "./boardSquareData";
-import {playerModes} from "../player-area/player-area.component";
 import {scriptingAPI} from "./scriptingAPI";
 import {SettingsService} from "../services/settings.service";
 
@@ -18,7 +17,7 @@ export class gameController {
     this.activePlayer = this.player1;
 
     this.boardModel = new boardModel(this);
-    this.scriptingAPI = new scriptingAPI(this);
+    this.scriptingAPI = scriptingAPI(this);
     //Expose the scripting API to the console
     window["scriptingAPI"] = this.scriptingAPI;
   }
@@ -27,7 +26,7 @@ export class gameController {
   player2: playerModel;
   activePlayerId: number;
   boardModel: boardModel;
-  scriptingAPI: scriptingAPI;
+  scriptingAPI: any;
 
   /**
    * Handler for updates reported by the playerModel.
