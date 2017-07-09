@@ -13,8 +13,9 @@ export class userScriptExecutor {
    * A Linter might think it is unused due to the script running in eval, but it is not.
    */
   execute(api: any) {
-    const scriptFunction = `${this.userScriptText}
+    const scriptFunctionSrc = `${this.userScriptText}
           //# sourceURL=player${this.sourceUrl}`;
-    eval(scriptFunction);
+    var userScript = new Function("api", scriptFunctionSrc);
+    userScript(api);
   }
 }
