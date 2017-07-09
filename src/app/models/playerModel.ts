@@ -60,7 +60,8 @@ export class playerModel {
       case playerModes.runMyCode:
         try {
           console.log("Run My Code", this.workingScript.scriptText);
-          eval(this.workingScript.scriptText);
+          eval(`${this.workingScript.scriptText}
+          //# sourceURL=player${this.playerLetter}Script.js`);
         } catch (exp) {
           console.log("Scripting Error", exp);
         }
