@@ -1,8 +1,9 @@
 import { AceEditorComponent } from 'ng2-ace-editor';
+import {} from 'ace-builds';
 import {AfterViewInit, Component, Input, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {CodeManagementService} from "../services/code-management.service";
 import {playerModel} from "../models/playerModel";
-import {savedScript} from "../models/savedScript";
+
 
 @Component({
   selector: 'app-code-editor',
@@ -28,7 +29,7 @@ export class CodeEditorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //this.editor.setTheme("eclipse");
+    this.editor.setTheme("eclipse");
 
     const editor = this.editor.getEditor();
 
