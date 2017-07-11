@@ -7,7 +7,26 @@
   }
 }
 
-#winner-announcement, #tied-announcement {
-  font-size: 80px;
+#footer {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  
+  #winner-announcement, #tied-announcement {
+    font-size: 80px;
+  }
+
+  #reset {
+    padding: 5px 10px 5px 10px;
+    margin: 5px 20px;
+    font-size: 60px;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
 }
 

@@ -15,6 +15,7 @@ export class userScriptExecutor {
   execute(api: any) {
     const scriptFunctionSrc = `${this.userScriptText}
           //# sourceURL=player${this.sourceUrl}`;
+
     var userScript = new Function("api", scriptFunctionSrc);
     userScript(api);
   }
