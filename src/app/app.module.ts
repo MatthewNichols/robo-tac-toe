@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MdButtonModule } from '@angular/material';
 
 import { AceEditorComponent } from 'ng2-ace-editor';
 
@@ -23,7 +24,8 @@ import { SettingsService } from './services/settings.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    MdButtonModule
   ],
   providers: [
     CodeManagementService,
