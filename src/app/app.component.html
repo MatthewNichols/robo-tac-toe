@@ -1,8 +1,15 @@
 <!--The whole content below can be removed with the new code.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
+  <div id="header">
+    <h1>
+      Welcome to {{title}}!!
+    </h1>
+
+    <a md-mini-fab id="app-settings" (click)="showSettings()">
+      <md-icon>settings</md-icon>
+    </a>
+  </div>
+
   <div id="playing-area">
     <app-player-area [active]="player1Active" [playerModel]="controller.player1" ></app-player-area>
     <app-board [boardModel]="controller.boardModel" ></app-board>

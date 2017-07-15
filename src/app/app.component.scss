@@ -1,4 +1,25 @@
 
+#header {
+  display: flex;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+  //h1 {
+  //  justify-self: center;
+  //}
+
+  #app-settings {
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+
+    //.mat-icon {
+    //  font-size: ;
+    //  padding-right: 4px;
+    //}
+  }
+}
+
 #playing-area {
   display: flex;
 
