@@ -50,11 +50,9 @@ export class playerModel {
   executeTurn(scriptingAPI: any) {
     switch (this.playerMode) {
       case playerModes.random:
-        setTimeout(() => {
-          const unclaimedSquares = scriptingAPI.getUnclaimedSquares();
-          var squareToClaim = unclaimedSquares[Math.floor(unclaimedSquares.length * Math.random())];
-          scriptingAPI.claimSquare(squareToClaim.row, squareToClaim.col);
-        }, timeToWait);
+        const unclaimedSquares = scriptingAPI.getUnclaimedSquares();
+        let squareToClaim = unclaimedSquares[Math.floor(unclaimedSquares.length * Math.random())];
+        scriptingAPI.claimSquare(squareToClaim.row, squareToClaim.col);
         break;
       case playerModes.runMyCode:
         try {

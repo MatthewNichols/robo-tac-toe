@@ -43,7 +43,7 @@ export class gameController {
    */
   gameStart() {
     this.gameState = gameState.InPlay;
-    setTimeout(() => this.activePlayer.executeTurn(this.scriptingAPI), 500);
+    this.executeActivePlayerTurn();
   }
 
   get activePlayer(): playerModel {
@@ -98,9 +98,8 @@ export class gameController {
       this.toggleActivePlayer();
 
       if (this.gameState === gameState.InPlay) {
-        this.activePlayer.executeTurn(this.scriptingAPI);
+        this.executeActivePlayerTurn();
       }
-
     }
   }
 
@@ -113,6 +112,12 @@ export class gameController {
       this.gameStart();
     }
   }
+
+  private executeActivePlayerTurn() {
+    const secondsBetweenMoves = this.settingsService.getGameSettings().secondsBetweenMoves;
+    setTimeout(() => this.activePlayer.executeTurn(this.scriptingAPI), secondsBetweenMoves * 1000);
+  }
+
 }
 
 export enum gameState {
