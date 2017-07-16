@@ -10,6 +10,8 @@ export class AppSettingsDialogComponent implements OnInit {
 
   constructor(public dialogRef: MdDialogRef<AppSettingsDialogComponent>) { }
 
+  secondsBetweenMoves: number;
+
   ngOnInit() {
   }
 

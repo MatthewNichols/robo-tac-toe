@@ -5,13 +5,13 @@ import localStorageUtils from './localStorageUtils';
 
 const Player1SettingsKey = "robo-Player1Settings";
 const Player2SettingsKey = "robo-Player2Settings";
+const GameSettingsKey = "robo-GameSettings";
 
 @Injectable()
 export class SettingsService {
 
   constructor() {  }
 
-  localStorageUtils
   getPlayer1Settings(): playerSettings {
     return localStorageUtils.getItem(Player1SettingsKey, {
       playerId: PLAYER_1,
@@ -33,10 +33,24 @@ export class SettingsService {
     localStorageUtils.saveItem(settingKey, settings )
   }
 
+  getGameSettings(): gameSettings {
+    return localStorageUtils.getItem(GameSettingsKey, {
+      secondsBetweenMoves: 4
+    });
+  }
+
+  saveGameSettings(settings: gameSettings): void {
+    localStorageUtils.saveItem(GameSettingsKey, settings )
+  }
+
 }
 
 export interface playerSettings {
   playerId: number;
   playerLetter: string;
   playerMode: playerModes;
+}
+
+export interface gameSettings {
+  secondsBetweenMoves: number;
 }

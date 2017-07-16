@@ -31,7 +31,13 @@ export class AppComponent implements OnInit {
   get player2Active() { return this.controller.activePlayerId === PLAYER_2};
 
   showSettings() {
-    console.log("show settings");
+    const gameSettings = this.settingsService.getGameSettings();
     let settingsDialog = this.dialog.open(AppSettingsDialogComponent);
+    settingsDialog.componentInstance.secondsBetweenMoves = gameSettings.secondsBetweenMoves
+
+    settingsDialog.afterClosed().subscribe(result => {
+      gameSettings.secondsBetweenMoves = settingsDialog.componentInstance.secondsBetweenMoves;
+      this.settingsService.saveGameSettings(gameSettings);
+    });
   }
 }
