@@ -1,6 +1,6 @@
 import {boardModel} from "./boardModel";
 import {playerModel} from "./playerModel";
-import {gameController} from "./gameController";
+import {gameController, gameState} from "./gameController";
 
 export class boardSquareModel {
 
@@ -34,6 +34,7 @@ export class boardSquareModel {
   }
 
   handleClaim() {
+    this.controller.gameState = gameState.InPlay;
     this.controller.handleSquareClaim(this);
   }
 

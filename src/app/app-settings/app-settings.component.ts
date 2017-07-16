@@ -15,11 +15,16 @@ export class AppSettingsComponent {
   showSettings() {
     const gameSettings = this.settingsService.getGameSettings();
     let settingsDialog = this.dialog.open(AppSettingsDialogComponent);
-    settingsDialog.componentInstance.secondsBetweenMoves = gameSettings.secondsBetweenMoves
+
+    const dialogModel = settingsDialog.componentInstance;
+    dialogModel.secondsBetweenMoves = gameSettings.secondsBetweenMoves;
+    dialogModel.autostartPlay = gameSettings.autostartPlay;
 
     settingsDialog.afterClosed().subscribe(result => {
       if (result === AppSettingsDialogActions.Save) {
-        gameSettings.secondsBetweenMoves = settingsDialog.componentInstance.secondsBetweenMoves;
+        gameSettings.secondsBetweenMoves = dialogModel.secondsBetweenMoves;
+        gameSettings.autostartPlay = dialogModel.autostartPlay;
+
         this.settingsService.saveGameSettings(gameSettings);
       }
     });

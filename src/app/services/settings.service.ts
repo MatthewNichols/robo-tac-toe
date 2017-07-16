@@ -35,7 +35,8 @@ export class SettingsService {
 
   getGameSettings(): gameSettings {
     return localStorageUtils.getItem(GameSettingsKey, {
-      secondsBetweenMoves: 4
+      secondsBetweenMoves: 4,
+      autostartPlay: true
     });
   }
 
@@ -53,4 +54,5 @@ export interface playerSettings {
 
 export interface gameSettings {
   secondsBetweenMoves: number;
+  autostartPlay: boolean;
 }

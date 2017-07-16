@@ -11,6 +11,8 @@ export class AppSettingsDialogComponent implements OnInit {
   constructor(public dialogRef: MdDialogRef<AppSettingsDialogComponent>) { }
 
   secondsBetweenMoves: number;
+  autostartPlay: boolean;
+
   actions = AppSettingsDialogActions;
 
   ngOnInit() {

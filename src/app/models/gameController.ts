@@ -26,6 +26,7 @@ export class gameController {
   player2: playerModel;
   activePlayerId: number;
   boardModel: boardModel;
+  gameState: gameState = gameState.ReadyToStart;
   scriptingAPI: any;
 
   /**
@@ -41,6 +42,7 @@ export class gameController {
    * be made manually by the user irrespective of Mode.
    */
   gameStart() {
+    this.gameState = gameState.InPlay;
     setTimeout(() => this.activePlayer.executeTurn(this.scriptingAPI), 500);
   }
 
@@ -85,18 +87,36 @@ export class gameController {
     square.claimedBy = this.activePlayer;
     console.log(`${playerLetter} claimed square ${square.row}, ${square.col}`);
 
+    if (this.boardModel.gameOver) {
+      this.gameState = gameState.GameOver;
+    }
+
     if (this.boardModel.gameWon) {
       this.boardModel.winningPath.markSquaresWinning();
       console.log(`${playerLetter} won the game!!`);
     } else {
       this.toggleActivePlayer();
-      this.activePlayer.executeTurn(this.scriptingAPI);
+
+      if (this.gameState === gameState.InPlay) {
+        this.activePlayer.executeTurn(this.scriptingAPI);
+      }
+
     }
   }
 
   resetGame() {
     this.setActivePlayer(PLAYER_1);
     this.boardModel.squares.forEach(s => s.resetSquare());
-    this.gameStart();
+    this.gameState = gameState.ReadyToStart;
+
+    if (this.settingsService.getGameSettings().autostartPlay) {
+      this.gameStart();
+    }
   }
+}
+
+export enum gameState {
+  InPlay,
+  GameOver,
+  ReadyToStart
 }

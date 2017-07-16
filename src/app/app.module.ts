@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {MdButtonModule, MdDialog, MdDialogModule, MdFab, MdIconModule, MdInputModule} from '@angular/material';
+import {
+  MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdFab, MdIconModule,
+  MdInputModule
+} from '@angular/material';
 
 import { AceEditorComponent } from 'ng2-ace-editor';
 
@@ -34,6 +37,7 @@ import { AppSettingsComponent } from './app-settings/app-settings.component';
     MdIconModule,
     MdDialogModule,
     MdInputModule,
+    MdCheckboxModule,
     BrowserAnimationsModule
   ],
   providers: [

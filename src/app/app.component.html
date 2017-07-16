@@ -30,6 +30,12 @@
       </a>
     </div>
 
+    <div id="start-play" *ngIf="showStartPlay">
+      <a md-raised-button class="btn-reset" href="#" (click)="controller.gameStart()">
+        Start
+      </a>
+    </div>
+
   </div>
 
 </div>

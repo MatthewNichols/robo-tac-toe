@@ -1,15 +1,16 @@
 <h1 class="mat-dialog-title" md-dialog-title="" id="md-dialog-title-1">Dialog</h1>
 <div class="mat-dialog-content" md-dialog-content="">
 
-  <label>
-
-    <md-input-container>
-      <input id="number-of-seconds" mdInput type="number" [(ngModel)]="secondsBetweenMoves" placeholder="Number of seconds between automatic moves">
-    </md-input-container>
-
-  </label>
+  <md-input-container>
+    <input id="number-of-seconds" mdInput type="number" [(ngModel)]="secondsBetweenMoves" placeholder="Number of seconds between automatic moves">
+  </md-input-container>
+  <br/>
+  <md-checkbox id="autostart-play" mdInput type="checkbox" [(ngModel)]="autostartPlay">
+    Autostart game play?
+  </md-checkbox>
 
 </div>
+
 <div class="mat-dialog-actions" md-dialog-actions="">
   <button class="mat-button" md-button="" [md-dialog-close]="actions.Cancel" type="button" aria-label="Cancel">
     <span class="mat-button-wrapper">Cancel</span>
