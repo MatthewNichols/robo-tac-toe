@@ -11,12 +11,12 @@
 
 </div>
 <div class="mat-dialog-actions" md-dialog-actions="">
-  <button class="mat-button" md-button="" md-dialog-close="Cancel" type="button" aria-label="Cancel">
+  <button class="mat-button" md-button="" [md-dialog-close]="actions.Cancel" type="button" aria-label="Cancel">
     <span class="mat-button-wrapper">Cancel</span>
     <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
     <div class="mat-button-focus-overlay"></div>
   </button>
-  <button class="mat-button" md-button="" md-dialog-close="Save" type="button" aria-label="Save">
+  <button class="mat-button" md-button="" [md-dialog-close]="actions.Save" type="button" aria-label="Save">
     <span class="mat-button-wrapper">Save</span>
     <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
     <div class="mat-button-focus-overlay"></div>

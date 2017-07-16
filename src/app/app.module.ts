@@ -14,6 +14,7 @@ import { CodeManagementService } from './services/code-management.service';
 import { SettingsService } from './services/settings.service';
 import { AppSettingsDialogComponent } from './app-settings-dialog/app-settings-dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AppSettingsComponent } from './app-settings/app-settings.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BoardSquareComponent,
     CodeEditorComponent,
     AceEditorComponent,
-    AppSettingsDialogComponent
+    AppSettingsDialogComponent,
+    AppSettingsComponent
   ],
   imports: [
     BrowserModule,
