@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {MdButtonModule, MdFab, MdIconModule} from '@angular/material';
+import {MdButtonModule, MdDialog, MdDialogModule, MdFab, MdIconModule} from '@angular/material';
 
 import { AceEditorComponent } from 'ng2-ace-editor';
 
@@ -13,6 +13,7 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { CodeManagementService } from './services/code-management.service';
 import { SettingsService } from './services/settings.service';
 import { AppSettingsDialogComponent } from './app-settings-dialog/app-settings-dialog.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -28,11 +29,16 @@ import { AppSettingsDialogComponent } from './app-settings-dialog/app-settings-d
     BrowserModule,
     FormsModule,
     MdButtonModule,
-    MdIconModule
+    MdIconModule,
+    MdDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CodeManagementService,
     SettingsService
+  ],
+  entryComponents: [
+    AppSettingsDialogComponent
   ],
   bootstrap: [AppComponent]
 })
