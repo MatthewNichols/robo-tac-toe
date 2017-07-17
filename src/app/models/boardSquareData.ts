@@ -4,7 +4,7 @@ import {gameController, gameState} from "./gameController";
 
 export class boardSquareModel {
 
-  constructor(public row: number, public col: number, private parent: boardModel, private controller: gameController) {  }
+  constructor(public row: number, public col: number, private parent: boardModel, public controller: gameController) {  }
 
   claimedBy: playerModel;
   partOfWinningPath: boolean;

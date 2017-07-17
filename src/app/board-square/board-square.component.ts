@@ -1,5 +1,6 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
 import {boardSquareModel} from "../models/boardSquareData";
+import {playerModes} from "../player-area/player-area.component";
 
 @Component({
   selector: 'app-board-square',
@@ -22,7 +23,8 @@ export class BoardSquareComponent implements OnInit{
   }
 
   get clickEnabled() {
-    return this.squareModel.claimsAllowed;
+    const activePlayer = this.squareModel.controller.activePlayer;
+    return this.squareModel.claimsAllowed && activePlayer.playerMode === playerModes.manual;
   }
 
   onClick() {
