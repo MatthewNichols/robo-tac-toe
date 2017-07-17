@@ -18,6 +18,7 @@ import { SettingsService } from './services/settings.service';
 import { AppSettingsDialogComponent } from './app-settings-dialog/app-settings-dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppSettingsComponent } from './app-settings/app-settings.component';
+import { FooterControlsComponent } from './footer-controls/footer-controls.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppSettingsComponent } from './app-settings/app-settings.component';
     CodeEditorComponent,
     AceEditorComponent,
     AppSettingsDialogComponent,
-    AppSettingsComponent
+    AppSettingsComponent,
+    FooterControlsComponent
   ],
   imports: [
     BrowserModule,

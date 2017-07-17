@@ -32,9 +32,4 @@ export class AppComponent implements OnInit {
 
   get player1Active() { return this.controller.activePlayerId === PLAYER_1};
   get player2Active() { return this.controller.activePlayerId === PLAYER_2};
-
-  get showStartPlay() {
-    return this.controller.gameState === gameState.ReadyToStart &&
-        ! this.settingsService.getGameSettings().autostartPlay;
-  }
 }

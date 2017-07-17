@@ -23,24 +23,3 @@
   }
 }
 
-#footer {
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-
-  #winner-announcement, #tied-announcement {
-    font-size: 80px;
-  }
-
-  #reset {
-    padding: 18px;
-
-    .btn-reset {
-      height: 60px;
-      font-size: 40px !important;
-      padding-top: 10px;
-    }
-  }
-
-}
-

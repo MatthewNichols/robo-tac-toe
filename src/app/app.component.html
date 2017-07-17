@@ -16,25 +16,7 @@
 
   <div id="footer">
 
-    <div id="winner-announcement" *ngIf="controller.boardModel.gameWon">
-      Won by {{controller.boardModel.gameWonBy.playerLetter}}
-    </div>
-
-    <div id="tied-announcement" *ngIf="controller.boardModel.gameTied">
-      Game Tied
-    </div>
-
-    <div id="reset" *ngIf="controller.boardModel.gameOver">
-      <a md-raised-button class="btn-reset" href="#" (click)="controller.resetGame()">
-        Reset
-      </a>
-    </div>
-
-    <div id="start-play" *ngIf="showStartPlay">
-      <a md-raised-button class="btn-reset" href="#" (click)="controller.gameStart()">
-        Start
-      </a>
-    </div>
+    <app-footer-controls [controller]="controller"></app-footer-controls>
 
   </div>
 
