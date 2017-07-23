@@ -9,7 +9,7 @@ export class playerModel {
   /**
    * @param {Function} playerUpdated Handler function.
    */
-  constructor(playerId: number, playerLetter: string, playerMode: playerModes = playerModes.manual, playerUpdated?: Function) {
+  constructor(playerId: number, playerLetter: string, playerMode: playerModes = playerModes.manual, playerUpdated?: {(model: playerModel, fieldsUpdated?: string[]): void}) {
     this.playerId = playerId;
     this.playerLetter = playerLetter;
     this.playerMode = playerMode;
@@ -29,7 +29,7 @@ export class playerModel {
 
     //If a playerUpdated function is initialized then call it with the current instance.
     if (this.playerUpdated) {
-      this.playerUpdated(this);
+      this.playerUpdated(this, ["playerMode"]);
     }
   }
 
@@ -40,7 +40,7 @@ export class playerModel {
   /**
    * playerUpdated Handler function.
    */
-  playerUpdated: Function;
+  playerUpdated: {(model: playerModel, fieldsUpdated?: string[]): void};
 
   /**
    * Carries out the active users turn. Called whenever the Active player

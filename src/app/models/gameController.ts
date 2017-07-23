@@ -4,6 +4,7 @@ import {boardModel} from "./boardModel";
 import {boardSquareModel} from "./boardSquareData";
 import {scriptingAPI} from "./scriptingAPI";
 import {SettingsService} from "../services/settings.service";
+import {playerModes} from "../player-area/player-area.component";
 
 export class gameController {
 
@@ -33,8 +34,16 @@ export class gameController {
    * Handler for updates reported by the playerModel.
    * @param playerModel
    */
-  playerUpdated = (playerModel) => {
+  playerUpdated = (playerModel, fieldsUpdated?: string[]) => {
+    console.log("***playerUpdated", playerModel, fieldsUpdated);
     this.settingsService.savePlayerSettings(playerModel);
+
+    if (this.gameState === gameState.InPlay && playerModel.playerId === this.activePlayerId
+          && fieldsUpdated.indexOf("playerMode") > -1) {
+      if (playerModel.playerMode === playerModes.random || playerModel.playerMode === playerModes.runMyCode ) {
+        this.executeActivePlayerTurn();
+      }
+    }
   }
 
   /**
