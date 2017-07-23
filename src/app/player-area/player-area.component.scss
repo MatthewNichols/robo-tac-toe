@@ -5,6 +5,13 @@
 
   h2 {
     font-size: 64px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 0;
   }
 
   &.active {
@@ -14,7 +21,7 @@
   div.player-mode {
     text-align: left;
     margin-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 
     ul.player-mode-list {
       list-style-type: none;
@@ -22,9 +29,15 @@
       padding: 0;
 
       li {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 18px;
         padding-top: 5px;
       }
 
     }
+  }
+
+  .code-manager {
+    margin-bottom: 10px;
   }
 }

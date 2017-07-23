@@ -30,5 +30,8 @@
     </form>
   </div>
 
-  <app-code-editor *ngIf="editorEnabled" [player]="playerModel"></app-code-editor>
+  <div *ngIf="editorEnabled">
+    <button class="code-manager" md-raised-button>Code Manager</button>
+    <app-code-editor [player]="playerModel"></app-code-editor>
+  </div>
 
