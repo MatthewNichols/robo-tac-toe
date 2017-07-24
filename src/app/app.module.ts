@@ -19,6 +19,7 @@ import { AppSettingsDialogComponent } from './app-settings-dialog/app-settings-d
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppSettingsComponent } from './app-settings/app-settings.component';
 import { FooterControlsComponent } from './footer-controls/footer-controls.component';
+import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FooterControlsComponent } from './footer-controls/footer-controls.compo
     AceEditorComponent,
     AppSettingsDialogComponent,
     AppSettingsComponent,
-    FooterControlsComponent
+    FooterControlsComponent,
+    CodeManagerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { FooterControlsComponent } from './footer-controls/footer-controls.compo
     SettingsService
   ],
   entryComponents: [
-    AppSettingsDialogComponent
+    AppSettingsDialogComponent,
+    CodeManagerDialogComponent
   ],
   bootstrap: [AppComponent]
 })

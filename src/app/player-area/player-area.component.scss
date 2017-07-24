@@ -37,7 +37,13 @@
     }
   }
 
-  .code-manager {
-    margin-bottom: 10px;
+  .editor-area {
+    display: flex;
+    flex-direction: column;
+
+    .code-manager {
+      margin: 10px 25px;
+    }
   }
+
 }
