@@ -17,7 +17,6 @@ export class AppSettingsDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
 
 export enum AppSettingsDialogActions {

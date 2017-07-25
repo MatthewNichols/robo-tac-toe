@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdFab, MdIconModule,
-  MdInputModule
+  MdInputModule, MdToolbarModule
 } from '@angular/material';
 
 import { AceEditorComponent } from 'ng2-ace-editor';
@@ -42,6 +42,7 @@ import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-d
     MdDialogModule,
     MdInputModule,
     MdCheckboxModule,
+    MdToolbarModule,
     BrowserAnimationsModule
   ],
   providers: [
