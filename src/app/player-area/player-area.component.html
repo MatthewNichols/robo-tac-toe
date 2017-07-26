@@ -31,7 +31,7 @@
   </div>
 
   <div class="editor-area" *ngIf="editorEnabled">
-    <button class="code-manager" md-raised-button (click)="openCodeManager()">Code Manager</button>
+    <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
     <app-code-editor [player]="playerModel"></app-code-editor>
   </div>
 
