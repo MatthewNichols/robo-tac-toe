@@ -4,6 +4,7 @@ import 'brace/mode/javascript';
 import {AfterViewInit, Component, Input, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {CodeManagementService} from "../services/code-management.service";
 import {playerModel} from "../models/playerModel";
+import {savedScript} from "../models/savedScript";
 
 
 @Component({
@@ -16,13 +17,14 @@ export class CodeEditorComponent implements AfterViewInit {
   constructor(private codeManementService: CodeManagementService, private cdr: ChangeDetectorRef) {  }
 
   @ViewChild('editor') editor;
-  scriptText: string = "";
+
+  get scriptText(): string { return this.player.workingScript.scriptText || "" };
+  set scriptText(newValue: string) { this.player.workingScript.scriptText = newValue }
+
   @Input() enabled: boolean = true;
   @Input() player: playerModel;
-  //workingScript: savedScript;
 
   textChanged() {
-    console.log("Text changed", this.scriptText);
     if (this.player.workingScript !== undefined) {
       this.player.workingScript.scriptText = this.scriptText;
       this.codeManementService.saveWorkingScript(this.player.playerId, this.player.workingScript);
@@ -46,11 +48,11 @@ export class CodeEditorComponent implements AfterViewInit {
     //   }
     // });
 
-    this.player.workingScript = this.codeManementService.getWorkingScript(this.player.playerId);
-    console.log("workingScriptLoaded", this.player.workingScript.scriptText);
-    this.scriptText = this.player.workingScript.scriptText;
-    //Handles runtime error. May not be needed long term.
-    //See: https://github.com/angular/angular/issues/17572 for details
-    this.cdr.detectChanges();
+    this.codeManementService.getWorkingScript(this.player.playerId).then(savedScript => {
+      this.player.workingScript = savedScript;
+      //Handles runtime error. May not be needed long term.
+      //See: https://github.com/angular/angular/issues/17572 for details
+      this.cdr.detectChanges();
+    });
   }
 }

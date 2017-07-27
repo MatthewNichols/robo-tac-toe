@@ -27,7 +27,7 @@ export interface ICodeManagementService {
   /**
    * Get the current working script
    */
-  getWorkingScript(playerId: number): savedScript;
+  getWorkingScript(playerId: number): Promise<savedScript>;
 
   /**
    * Saves the current script being worked on as is
@@ -38,11 +38,19 @@ export interface ICodeManagementService {
 
 @Injectable()
 export class CodeManagementService implements ICodeManagementService {
-  getWorkingScript(playerId: number): savedScript {
-    return localStorageUtils.getItemAs(savedScript, WORKING_SCRIPT_STORAGE_KEY + playerId, new savedScript({}));
+  getWorkingScript(playerId: number): Promise<savedScript> {
+    return new Promise<savedScript>((resolve, reject) => {
+      const defaultValue = new savedScript({});
+      const key = WORKING_SCRIPT_STORAGE_KEY + playerId;
+      let script = localStorageUtils.getItemAs(savedScript, key, defaultValue);
+      console.log(script.scriptText);
+      resolve(script);
+    });
+    //return localStorageUtils.getItemAs(savedScript, WORKING_SCRIPT_STORAGE_KEY + playerId, new savedScript({}));
   }
 
   saveWorkingScript(playerId: number, script: savedScript) {
+    console.log("saving", playerId, savedScript);
     localStorageUtils.saveItem(WORKING_SCRIPT_STORAGE_KEY + playerId, script);
   }
 
