@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdFab, MdIconModule,
+  MdButtonModule, MdButtonToggleModule, MdCardModule, MdCheckboxModule, MdDialog, MdDialogModule, MdFab, MdIconModule,
   MdInputModule, MdToolbarModule
 } from '@angular/material';
 
@@ -43,6 +43,8 @@ import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-d
     MdInputModule,
     MdCheckboxModule,
     MdToolbarModule,
+    MdButtonToggleModule,
+    MdCardModule,
     BrowserAnimationsModule
   ],
   providers: [

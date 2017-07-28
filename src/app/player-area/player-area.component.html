@@ -1,9 +1,10 @@
 
+
   <h2>{{playerModel.playerLetter}}</h2>
 
   <div class="player-mode">
     <h3>Player Mode</h3>
-    <form #f="ngForm" novalidate>
+
       <ul class="player-mode-list">
         <li>
           <label>
@@ -19,15 +20,22 @@
             Random
           </label>
         </li>
-        <li>
+        <li class="run-my-code">
           <label>
             <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
                    [value]="playerModes.runMyCode" [(ngModel)]="playerModel.playerMode" >
             Run my Code
           </label>
+
+
+          <md-button-toggle [checked]="autoPlaySelected" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
+          <button md-mini-fab>
+            <md-icon>play_circle_outline</md-icon>
+          </button>
+
         </li>
       </ul>
-    </form>
+
   </div>
 
   <div class="editor-area" *ngIf="editorEnabled">

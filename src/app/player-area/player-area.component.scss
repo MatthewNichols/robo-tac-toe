@@ -30,8 +30,12 @@
 
       li {
         font-family: Roboto, "Helvetica Neue", sans-serif;
-        font-size: 18px;
-        padding-top: 5px;
+        font-size: 24px;
+        padding-top: 15px;
+
+        &.run-my-code {
+          padding-top: 5px;
+        }
       }
 
     }

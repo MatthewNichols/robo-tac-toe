@@ -17,15 +17,22 @@ export class PlayerAreaComponent {
 
   @Input() @HostBinding('class.active') active: boolean;
   @Input() playerModel: playerModel;
+  @Input() autoPlaySelected: boolean = true;
 
   get editorEnabled(): boolean {
     return this.playerModel.playerMode === playerModes.runMyCode;
+  }
+
+  autoPlayChanged = (source, value) => {
+    this.autoPlaySelected = !this.autoPlaySelected;
+    console.log(this.autoPlaySelected);
   }
 
   openCodeManager() {
     console.log("openCodeManager", this);
     let codeManagementDialog = this.dialog.open(CodeManagerDialogComponent);
   }
+
 }
 
 export enum playerModes {
