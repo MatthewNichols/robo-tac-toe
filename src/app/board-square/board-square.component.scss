@@ -1,3 +1,6 @@
+@import "~@angular/material/theming";
+@import "../../custom-theme";
+
 $InternalBorderValue: solid 5px #000;
 
 :host {
@@ -19,7 +22,7 @@ $InternalBorderValue: solid 5px #000;
   }
 
   &.winning-path {
-    background-color: burlywood;
+    background-color: mat-color($custom-theme-accent, 200);
   }
 
   .main-click-area {

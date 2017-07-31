@@ -1,3 +1,6 @@
+@import "~@angular/material/theming";
+@import "../../custom-theme";
+
 :host {
   min-width: 200px;
   flex-grow: 1;
@@ -15,7 +18,7 @@
   }
 
   &.active {
-    background-color: aqua;
+    background-color: mat-color($custom-theme-primary, 300);
   }
 
   div.player-mode {

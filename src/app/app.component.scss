@@ -1,9 +1,18 @@
+@import "~@angular/material/theming";
+@import "../custom-theme";
 
-#header {
+
+#header-offset {
+  height: 20px;
+  background-color: mat-color($custom-theme-primary, 900);
+}
+
+md-toolbar#header {
   margin-bottom: 10px;
 
+
   h1 {
-    font-size: 48px !important;
+    font-size: 30px !important;
   }
 
   app-app-settings {
