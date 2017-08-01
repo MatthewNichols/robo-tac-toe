@@ -1,30 +1,38 @@
 :host {
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-
-  #winner-announcement, #tied-announcement {
-    font-size: 80px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+   #footer-bar {
+    margin-top: 10px;
   }
 
-  #reset {
-    padding: 18px;
+  #outcome-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    height: 40px;
 
-    .btn-reset {
-      height: 60px;
-      font-size: 40px !important;
-      padding-top: 10px;
+    #winner-announcement, #tied-announcement {
+      font-size: 30px;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      margin-top: 5px;
     }
-  }
 
-  #start-play {
-    padding: 18px;
+    #reset {
+      padding: 0 18px;
 
-    .btn-start-play {
-      height: 60px;
-      font-size: 40px !important;
-      padding-top: 10px;
+      .btn-reset {
+        height: 40px;
+        font-size: 30px !important;
+        padding-top: 2px;
+      }
+    }
+
+    #start-play {
+      padding: 18px;
+
+      .btn-start-play {
+        height: 60px;
+        font-size: 40px !important;
+        padding-top: 10px;
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
 @import "../custom-theme";
 
 
-#header-offset {
+#header-offset, #footer-offset {
   height: 20px;
   background-color: mat-color($custom-theme-primary, 900);
 }

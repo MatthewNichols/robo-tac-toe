@@ -1,19 +1,23 @@
-<div id="winner-announcement" *ngIf="controller.boardModel.gameWon">
-  Won by {{controller.boardModel.gameWonBy.playerLetter}}
-</div>
+<md-toolbar color="primary" id="footer-bar">
+  <div id="outcome-container">
+    <div id="winner-announcement" *ngIf="controller.boardModel.gameWon">
+      Won by {{controller.boardModel.gameWonBy.playerLetter}}
+    </div>
 
-<div id="tied-announcement" *ngIf="controller.boardModel.gameTied">
-  Game Tied
-</div>
+    <div id="tied-announcement" *ngIf="controller.boardModel.gameTied">
+      Game Tied
+    </div>
 
-<div id="reset" *ngIf="controller.boardModel.gameOver">
-  <a md-raised-button class="btn-reset" color="accent" href="#" (click)="controller.resetGame()">
-    Reset
-  </a>
-</div>
+    <div id="reset" *ngIf="controller.boardModel.gameOver">
+      <a md-raised-button class="btn-reset" color="accent" href="#" (click)="controller.resetGame()">
+        Reset
+      </a>
+    </div>
 
-<div id="start-play" *ngIf="showStartPlay">
-  <a md-raised-button class="btn-start-play" color="accent" href="#" (click)="controller.gameStart()">
-    Start
-  </a>
-</div>
+    <div id="start-play" *ngIf="showStartPlay">
+      <a md-raised-button class="btn-start-play" color="accent" href="#" (click)="controller.gameStart()">
+        Start
+      </a>
+    </div>
+  </div>
+</md-toolbar>
