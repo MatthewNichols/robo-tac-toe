@@ -26,20 +26,22 @@
                    [value]="playerModes.runMyCode" [(ngModel)]="playerModel.playerMode" >
             Run my Code
           </label>
-
-
-          <md-button-toggle [checked]="autoPlaySelected" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
-          <button md-mini-fab color="accent-A100">
-            <md-icon>play_circle_outline</md-icon>
-          </button>
-
         </li>
       </ul>
 
   </div>
 
   <div class="editor-area" *ngIf="editorEnabled">
-    <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
+    <div class="editor-controls">
+
+      <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
+
+      <md-button-toggle class="autoPlay" [checked]="autoPlaySelected" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
+      <a class="play-button">
+        <md-icon>play_circle_outline</md-icon>
+      </a>
+
+    </div>
     <app-code-editor [player]="playerModel"></app-code-editor>
   </div>
 
