@@ -1,9 +1,11 @@
-<div id="top-line"></div>
+<div class="editor-container">
 
-<ace-editor
-  [(text)]="scriptText"
-  [readOnly]="!enabled"
-  (textChanged)="textChanged()"
-  [mode]="'javascript'"
-  #editor style="height: 270px;">
-</ace-editor>
+  <ace-editor
+    [(text)]="scriptText"
+    [readOnly]="!enabled"
+    (textChanged)="textChanged()"
+    [mode]="'javascript'"
+    #editor style="height: 270px;">
+  </ace-editor>
+
+</div>

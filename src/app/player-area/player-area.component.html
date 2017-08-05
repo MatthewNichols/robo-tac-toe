@@ -1,47 +1,57 @@
 
+<md-card [ngClass]="activeClass">
+  <md-card-header>
+    <md-card-title>
+      <h2>
+        {{playerModel.playerLetter}}
+      </h2>
+    </md-card-title>
+  </md-card-header>
 
-  <h2>{{playerModel.playerLetter}}</h2>
+  <md-card-content>
 
-  <div class="player-mode">
-    <h3>Player Mode</h3>
+    <div class="player-mode">
+      <h3>Player Mode</h3>
 
-      <ul class="player-mode-list">
-        <li>
-          <label>
-            <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
-                   [value]="playerModes.manual" [(ngModel)]="playerModel.playerMode" >
-            Manual
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
-                   [value]="playerModes.random" [(ngModel)]="playerModel.playerMode" >
-            Random
-          </label>
-        </li>
-        <li class="run-my-code">
-          <label>
-            <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
-                   [value]="playerModes.runMyCode" [(ngModel)]="playerModel.playerMode" >
-            Run my Code
-          </label>
-        </li>
-      </ul>
-
-  </div>
-
-  <div class="editor-area" *ngIf="editorEnabled">
-    <div class="editor-controls">
-
-      <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
-
-      <md-button-toggle class="autoPlay" [checked]="autoPlaySelected" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
-      <a class="play-button">
-        <md-icon>play_circle_outline</md-icon>
-      </a>
+        <ul class="player-mode-list">
+          <li>
+            <label>
+              <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
+                     [value]="playerModes.manual" [(ngModel)]="playerModel.playerMode" >
+              Manual
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
+                     [value]="playerModes.random" [(ngModel)]="playerModel.playerMode" >
+              Random
+            </label>
+          </li>
+          <li class="run-my-code">
+            <label>
+              <input type="radio" name="player-{{playerModel.playerLetter}}-mode"
+                     [value]="playerModes.runMyCode" [(ngModel)]="playerModel.playerMode" >
+              Run my Code
+            </label>
+          </li>
+        </ul>
 
     </div>
-    <app-code-editor [player]="playerModel"></app-code-editor>
-  </div>
 
+    <div class="editor-area" *ngIf="editorEnabled">
+      <div class="editor-controls">
+
+        <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
+
+        <md-button-toggle class="autoPlay" [checked]="autoPlaySelected" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
+        <a class="play-button">
+          <md-icon>play_circle_outline</md-icon>
+        </a>
+
+      </div>
+      <app-code-editor [player]="playerModel"></app-code-editor>
+    </div>
+
+  </md-card-content>
+</md-card>

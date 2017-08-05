@@ -15,9 +15,13 @@ export class PlayerAreaComponent {
 
   constructor(public dialog: MdDialog) { }
 
-  @Input() @HostBinding('class.active') active: boolean;
+  @Input() active: boolean;
   @Input() playerModel: playerModel;
   @Input() autoPlaySelected: boolean = true;
+
+  get activeClass(): string {
+    return this.active ? 'mat-elevation-z24' : 'mat-elevation-z0';
+  }
 
   get editorEnabled(): boolean {
     return this.playerModel.playerMode === playerModes.runMyCode;
