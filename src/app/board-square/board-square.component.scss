@@ -1,7 +1,7 @@
 @import "~@angular/material/theming";
 @import "../../custom-theme";
 
-$InternalBorderValue: solid 5px #000;
+$InternalBorderValue: solid 2px mat-color($custom-theme-primary, 500);;
 
 :host {
   display: inline-flex;
@@ -9,7 +9,6 @@ $InternalBorderValue: solid 5px #000;
   height: 200px;
   width: 200px;
   position: relative;
-  border: solid 2px #000;
 
   &.center-row {
     border-top: $InternalBorderValue;
