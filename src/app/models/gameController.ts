@@ -1,5 +1,5 @@
 import {playerModel} from "./playerModel";
-import {PLAYER_1, PLAYER_2} from "./constants";
+import {FIELD_AUTORUN, FIELD_PLAYER_MODE, PLAYER_1, PLAYER_2} from "./constants";
 import {boardModel} from "./boardModel";
 import {boardSquareModel} from "./boardSquareData";
 import {scriptingAPI} from "./scriptingAPI";
@@ -38,8 +38,11 @@ export class gameController {
     console.log("***playerUpdated", playerModel, fieldsUpdated);
     this.settingsService.savePlayerSettings(playerModel);
 
+    var fieldUpdatedIs = (name: string): boolean => fieldsUpdated.indexOf(name) > -1;
+
+    //If the previous state was blocking play and the new state is not then trigger play to resume
     if (this.gameState === gameState.InPlay && playerModel.playerId === this.activePlayerId
-          && fieldsUpdated.indexOf("playerMode") > -1) {
+          && (fieldUpdatedIs(FIELD_PLAYER_MODE) || fieldUpdatedIs(FIELD_AUTORUN))) {
       if (playerModel.playerMode === playerModes.random || playerModel.playerMode === playerModes.runMyCode ) {
         this.executeActivePlayerTurn();
       }

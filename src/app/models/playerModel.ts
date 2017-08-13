@@ -77,9 +77,11 @@ export class playerModel {
         break;
       case playerModes.runMyCode:
         try {
-          console.log("Run My Code", this.workingScript.scriptText);
-          const scriptExecutor = new userScriptExecutor(this.workingScript.scriptText, `player${this.playerLetter}Script.js`);
-          scriptExecutor.execute(scriptingAPI);
+          if (this.autoRun) {
+            console.log("Run My Code", this.workingScript.scriptText);
+            const scriptExecutor = new userScriptExecutor(this.workingScript.scriptText, `player${this.playerLetter}Script.js`);
+            scriptExecutor.execute(scriptingAPI);
+          }
         } catch (exp) {
           console.log("Scripting Error", exp);
         }
