@@ -59,6 +59,8 @@
         flex-direction: column;
 
         .editor-controls {
+          $auto-play-control-color: mat-color($custom-theme-accent, 200);
+
           display: flex;
           margin-top: 5px;
           margin-bottom: 10px;
@@ -71,11 +73,15 @@
           .autoPlay {
             height: 36px;
             margin-right: 5px;
+
+            &.mat-button-toggle-checked {
+              background-color: $auto-play-control-color;
+            }
           }
 
           .play-button {
             display: inline-block;
-            background-color: #e0e0e0;
+            background-color: $auto-play-control-color;
             width: 36px;
             height: 36px;
             border-radius: 2px;
@@ -83,6 +89,7 @@
 
             &.disabled {
               background-color: rgba(0, 0, 0, 0);
+              color: rgba(0, 0, 0, 0);
             }
 
             md-icon {
