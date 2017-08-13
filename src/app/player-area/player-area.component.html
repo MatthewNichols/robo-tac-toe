@@ -45,7 +45,7 @@
         <button class="code-manager" md-raised-button (click)="openCodeManager()" color="accent">Code Manager</button>
 
         <md-button-toggle class="autoPlay" [checked]="playerModel.autoRun" (change)="autoPlayChanged($event)">Auto-Play</md-button-toggle>
-        <a class="play-button">
+        <a href="javascript: null" class="play-button" [class.disabled]="playButtonDisabled" (click)="playButtonClick()">
           <md-icon>play_circle_outline</md-icon>
         </a>
 

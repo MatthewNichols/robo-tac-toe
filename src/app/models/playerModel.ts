@@ -63,33 +63,6 @@ export class playerModel {
    */
   playerUpdated: {(model: playerModel, fieldsUpdated?: string[]): void};
 
-  /**
-   * Carries out the active users turn. Called whenever the Active player
-   * switches.
-   * @param scriptingAPI
-   */
-  executeTurn(scriptingAPI: any) {
-    switch (this.playerMode) {
-      case playerModes.random:
-        const unclaimedSquares = scriptingAPI.getUnclaimedSquares();
-        let squareToClaim = unclaimedSquares[Math.floor(unclaimedSquares.length * Math.random())];
-        scriptingAPI.claimSquare(squareToClaim.row, squareToClaim.col);
-        break;
-      case playerModes.runMyCode:
-        try {
-          if (this.autoRun) {
-            console.log("Run My Code", this.workingScript.scriptText);
-            const scriptExecutor = new userScriptExecutor(this.workingScript.scriptText, `player${this.playerLetter}Script.js`);
-            scriptExecutor.execute(scriptingAPI);
-          }
-        } catch (exp) {
-          console.log("Scripting Error", exp);
-        }
-
-      default:
-    }
-  }
-
   toJSON() {
     return {
       playerMode: this.playerMode,

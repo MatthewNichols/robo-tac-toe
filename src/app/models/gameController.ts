@@ -5,6 +5,7 @@ import {boardSquareModel} from "./boardSquareData";
 import {scriptingAPI} from "./scriptingAPI";
 import {SettingsService} from "../services/settings.service";
 import {playerModes} from "../player-area/player-area.component";
+import {userScriptExecutor} from "./userScriptExecutor";
 
 export class gameController {
 
@@ -44,7 +45,7 @@ export class gameController {
     if (this.gameState === gameState.InPlay && playerModel.playerId === this.activePlayerId
           && (fieldUpdatedIs(FIELD_PLAYER_MODE) || fieldUpdatedIs(FIELD_AUTORUN))) {
       if (playerModel.playerMode === playerModes.random || playerModel.playerMode === playerModes.runMyCode ) {
-        this.executeActivePlayerTurn();
+        this.executeActivePlayerTurnDelayed();
       }
     }
   }
@@ -55,7 +56,7 @@ export class gameController {
    */
   gameStart() {
     this.gameState = gameState.InPlay;
-    this.executeActivePlayerTurn();
+    this.executeActivePlayerTurnDelayed();
   }
 
   get activePlayer(): playerModel {
@@ -110,7 +111,7 @@ export class gameController {
       this.toggleActivePlayer();
 
       if (this.gameState === gameState.InPlay) {
-        this.executeActivePlayerTurn();
+        this.executeActivePlayerTurnDelayed();
       }
     }
   }
@@ -125,9 +126,39 @@ export class gameController {
     }
   }
 
-  private executeActivePlayerTurn() {
+  /**
+   * Carries out the active users turn with the configured delay.
+   * Called whenever the Active player switches.
+   */
+  executeActivePlayerTurnDelayed() {
     const secondsBetweenMoves = this.settingsService.getGameSettings().secondsBetweenMoves;
-    setTimeout(() => this.activePlayer.executeTurn(this.scriptingAPI), secondsBetweenMoves * 1000);
+    setTimeout(() => this.executeActivePlayerTurn(), secondsBetweenMoves * 1000);
+  }
+
+  /**
+   * Carries out the active users turn. Does not handle Manual Mode
+   * @param {boolean} overrideAutoRun Signifies single step mode and ignores the Players AutoPlay setting
+   */
+  executeActivePlayerTurn(overrideAutoRun = false) {
+    switch (this.activePlayer.playerMode) {
+      case playerModes.random:
+        const unclaimedSquares = this.scriptingAPI.getUnclaimedSquares();
+        let squareToClaim = unclaimedSquares[Math.floor(unclaimedSquares.length * Math.random())];
+        this.scriptingAPI.claimSquare(squareToClaim.row, squareToClaim.col);
+        break;
+      case playerModes.runMyCode:
+        try {
+          if (this.activePlayer.autoRun || overrideAutoRun) {
+            console.log("Run My Code", this.activePlayer.workingScript.scriptText);
+            const scriptExecutor = new userScriptExecutor(this.activePlayer.workingScript.scriptText, `player${this.activePlayer.playerLetter}Script.js`);
+            scriptExecutor.execute(scriptingAPI);
+          }
+        } catch (exp) {
+          console.log("Scripting Error", exp);
+        }
+
+      default:
+    }
   }
 
 }

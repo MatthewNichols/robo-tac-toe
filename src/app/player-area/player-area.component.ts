@@ -2,6 +2,7 @@ import {Component, HostBinding, Input } from '@angular/core';
 import {playerModel} from "../models/playerModel";
 import {MdDialog} from "@angular/material";
 import {CodeManagerDialogComponent} from "../code-manager-dialog/code-manager-dialog.component";
+import {gameController} from "../models/gameController";
 
 @Component({
   selector: 'app-player-area',
@@ -17,6 +18,9 @@ export class PlayerAreaComponent {
 
   @Input() active: boolean;
   @Input() playerModel: playerModel;
+  @Input() gameController: gameController;
+
+  get playButtonDisabled(): boolean { return this.playerModel.autoRun; }
 
   get activeClass(): string {
     return this.active ? 'mat-elevation-z24' : 'mat-elevation-z0';
@@ -33,6 +37,12 @@ export class PlayerAreaComponent {
   openCodeManager() {
     console.log("openCodeManager", this);
     let codeManagementDialog = this.dialog.open(CodeManagerDialogComponent);
+  }
+
+  playButtonClick() {
+    if (this.active && !this.playButtonDisabled) {
+      this.gameController.executeActivePlayerTurn(true);
+    }
   }
 
 }
