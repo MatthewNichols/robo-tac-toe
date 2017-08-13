@@ -50,6 +50,7 @@ export interface playerSettings {
   playerId: number;
   playerLetter: string;
   playerMode: playerModes;
+  playerAutoRun: boolean;
 }
 
 export interface gameSettings {

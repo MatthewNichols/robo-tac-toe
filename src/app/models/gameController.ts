@@ -12,8 +12,8 @@ export class gameController {
 
     var player1Settings = settingsService.getPlayer1Settings();
     var player2Settings = settingsService.getPlayer2Settings();
-    this.player1 = new playerModel(PLAYER_1, "X", player1Settings.playerMode, this.playerUpdated);
-    this.player2 = new playerModel(PLAYER_2, "O", player2Settings.playerMode, this.playerUpdated);
+    this.player1 = new playerModel(PLAYER_1, "X", player1Settings.playerMode, player1Settings.playerAutoRun, this.playerUpdated);
+    this.player2 = new playerModel(PLAYER_2, "O", player2Settings.playerMode, player1Settings.playerAutoRun, this.playerUpdated);
 
     this.activePlayer = this.player1;
 

@@ -17,7 +17,6 @@ export class PlayerAreaComponent {
 
   @Input() active: boolean;
   @Input() playerModel: playerModel;
-  @Input() autoPlaySelected: boolean = true;
 
   get activeClass(): string {
     return this.active ? 'mat-elevation-z24' : 'mat-elevation-z0';
@@ -28,8 +27,7 @@ export class PlayerAreaComponent {
   }
 
   autoPlayChanged = (source, value) => {
-    this.autoPlaySelected = !this.autoPlaySelected;
-    console.log(this.autoPlaySelected);
+    this.playerModel.autoRun = ! this.playerModel.autoRun;
   }
 
   openCodeManager() {
