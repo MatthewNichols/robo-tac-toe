@@ -19,11 +19,13 @@ export class AppSettingsComponent {
     const dialogModel = settingsDialog.componentInstance;
     dialogModel.secondsBetweenMoves = gameSettings.secondsBetweenMoves;
     dialogModel.autostartPlay = gameSettings.autostartPlay;
+    dialogModel.showSplash = gameSettings.showSplash;
 
     settingsDialog.afterClosed().subscribe(result => {
       if (result === AppSettingsDialogActions.Save) {
         gameSettings.secondsBetweenMoves = dialogModel.secondsBetweenMoves;
         gameSettings.autostartPlay = dialogModel.autostartPlay;
+        gameSettings.showSplash = dialogModel.showSplash;
 
         this.settingsService.saveGameSettings(gameSettings);
       }

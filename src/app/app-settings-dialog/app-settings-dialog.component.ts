@@ -12,6 +12,7 @@ export class AppSettingsDialogComponent implements OnInit {
 
   secondsBetweenMoves: number;
   autostartPlay: boolean;
+  showSplash: boolean;
 
   actions = AppSettingsDialogActions;
 

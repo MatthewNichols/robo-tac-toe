@@ -4,9 +4,15 @@
   <md-input-container>
     <input id="number-of-seconds" mdInput type="number" [(ngModel)]="secondsBetweenMoves" placeholder="Number of seconds between automatic moves">
   </md-input-container>
+
   <br/>
   <md-checkbox id="autostart-play" mdInput type="checkbox" [(ngModel)]="autostartPlay">
     Autostart game play?
+  </md-checkbox>
+
+  <br/>
+  <md-checkbox id="show-splash" mdInput type="checkbox" [(ngModel)]="showSplash">
+    Show Help screen at startup?
   </md-checkbox>
 
 </div>
