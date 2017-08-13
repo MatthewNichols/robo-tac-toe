@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppSettingsComponent } from './app-settings/app-settings.component';
 import { FooterControlsComponent } from './footer-controls/footer-controls.component';
 import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-dialog.component';
+import { SplashDialogComponent } from './splash-dialog/splash-dialog.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-d
     AppSettingsDialogComponent,
     AppSettingsComponent,
     FooterControlsComponent,
-    CodeManagerDialogComponent
+    CodeManagerDialogComponent,
+    SplashDialogComponent
   ],
   imports: [
     AceEditorModule,
@@ -52,6 +54,7 @@ import { CodeManagerDialogComponent } from './code-manager-dialog/code-manager-d
     SettingsService
   ],
   entryComponents: [
+    SplashDialogComponent,
     AppSettingsDialogComponent,
     CodeManagerDialogComponent
   ],

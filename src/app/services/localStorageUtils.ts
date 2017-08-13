@@ -1,8 +1,11 @@
 export default class localStorageUtils {
 
   static saveItem(key, item) {
+    console.log(item);
     if (typeof item !== "string") {
-      item = JSON.stringify(item);
+      var currentValue = localStorageUtils.getItem(key);
+      var saveValue = {...currentValue, ...item};
+      item = JSON.stringify(saveValue);
     }
 
     localStorage.setItem(key, item);
@@ -16,7 +19,9 @@ export default class localStorageUtils {
     }
 
     try {
-      return JSON.parse(itemString);
+
+      var parseedItem = JSON.parse(itemString);
+      return {...defaultValue, ...parseedItem};
     } catch(err) {
       return itemString;
     }
