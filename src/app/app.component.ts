@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     const gameSettings = this.settingsService.getGameSettings();
 
     if (gameSettings.showSplash) {
-      this.showSplashScreen();
+      setTimeout(() => this.showSplashScreen(), 100);
     } else {
       this.startGame();
     }
